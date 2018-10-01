@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">CareApp</string>
+    <string name="nome">Nome</string>
+    <string name="sobrenome">Sobrenome</string>
+    <string name="email">E-mail</string>
+    <string name="senha">Senha</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="preencha_campos">Preencha os campos corretamente</string>
+    <string name="verifique_conexao">Verifique conexão</string>
 </resources>
