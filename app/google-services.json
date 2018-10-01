@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "93622863860",
+    "firebase_url": "https://careapp-24889.firebaseio.com",
+    "project_id": "careapp-24889",
+    "storage_bucket": "careapp-24889.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:93622863860:android:ae3ce0ac47ea8b96",
+        "android_client_info": {
+          "package_name": "com.ruthb.careapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "93622863860-7tfv5fe65hapnvb8lc5627jfpt7h19qv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ruthb.careapp",
+            "certificate_hash": "9db33c0e48834b556b7ce391dc8fb5c89b0bebc5"
+          }
+        },
+        {
+          "client_id": "93622863860-kn4g81j083kvo636bq4kdtm7vjrrad8m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLi06bErp6sVxevxgjA-21_DrI3oqZvAQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "93622863860-kn4g81j083kvo636bq4kdtm7vjrrad8m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
