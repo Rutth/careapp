@@ -1,3 +1,3 @@
 package com.ruthb.careapp.entities
 
-data class UserEntity(var firstName: String, var lastName: String, var email: String, var password: String, var uid: String = "")
+data class UserEntity(var username: String, var email: String, var uid: String = "")

@@ -1,6 +1,8 @@
 package com.ruthb.careapp.business
 
 import android.content.Context
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.firebase.auth.FirebaseUser
 import com.ruthb.careapp.constants.CareConstants
 import com.ruthb.careapp.entities.UserEntity
 import com.ruthb.careapp.repo.UserRepo
@@ -11,28 +13,12 @@ class UserBusiness(var context: Context) {
     private val mSecurityPreferences: SecurityPreferences = SecurityPreferences(context)
 
 
-    fun registerUser(user: UserEntity) {
-        try {
-            mUserRepository.initialize()
-            val mUserID = mUserRepository.registerUser(user)
-            mSecurityPreferences.storeString(CareConstants.USER.USER_UID, mUserID)
-            mSecurityPreferences.storeString(CareConstants.USER.USER_FIRSTNAME, user.firstName)
-            mSecurityPreferences.storeString(CareConstants.USER.USER_LASTNAME, user.lastName)
-            mSecurityPreferences.storeString(CareConstants.USER.USER_EMAIL, user.email)
+    fun loginGoogle(acc: GoogleSignInAccount){
+        mUserRepository.authInstance()
+        mUserRepository.loginGoogle(acc)
+        println("INFO: ${mSecurityPreferences.getStoredString(CareConstants.USER.USER_UID)} - ${mSecurityPreferences.getStoredString(CareConstants.USER.USER_NAME)} - ${mSecurityPreferences.getStoredString(CareConstants.USER.USER_EMAIL)} - ${mSecurityPreferences.getStoredString(CareConstants.USER.USER_PHOTO)}")
 
-        } catch (e: Exception) {
-            throw e
-        }
     }
 
-    fun loginUser(email: String, password: String): Boolean {
-        mUserRepository.initialize()
-        try {
-            val loggedId = mUserRepository.loginUser(email, password)
-            mUserRepository.getCurrentUserInfo(loggedId)
-            return true
-        } catch (e: Exception) {
-            throw e
-        }
-    }
+
 }

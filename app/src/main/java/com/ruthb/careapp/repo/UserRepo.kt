@@ -1,10 +1,15 @@
 package com.ruthb.careapp.repo
 
 import android.content.Context
+import android.util.Log
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.*
+import com.ruthb.careapp.constants.CareConstants
 import com.ruthb.careapp.entities.UserEntity
+import com.ruthb.careapp.util.SecurityPreferences
 
 class UserRepo private constructor(context: Context) {
 
@@ -12,7 +17,7 @@ class UserRepo private constructor(context: Context) {
     private var mDatabase: FirebaseDatabase? = null
     private var mAuth: FirebaseAuth? = null
 
-
+    private val mSecurityPreferences: SecurityPreferences = SecurityPreferences(context)
 
     companion object {
         fun getInstance(context: Context): UserRepo {
@@ -30,7 +35,7 @@ class UserRepo private constructor(context: Context) {
 
     fun initialize() {
         mDatabase = FirebaseDatabase.getInstance()
-        mDatabaseReference = mDatabase!!.reference!!.child("Users")
+//        mDatabaseReference = mDatabase!!.reference!!.child("Users")
         mAuth = FirebaseAuth.getInstance()
     }
 
@@ -38,60 +43,35 @@ class UserRepo private constructor(context: Context) {
         mAuth = FirebaseAuth.getInstance()
     }
 
-    fun registerUser(user: UserEntity): String {
-        var uid = ""
-
-        mAuth!!.createUserWithEmailAndPassword(user.email, user.password).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-
-                val userId = mAuth!!.currentUser!!.uid
-                println("uid: $userId")
-                uid = userId
-
-                val currentUserDb = mDatabaseReference!!.child(userId)
-                currentUserDb.child("firstName").setValue(user.firstName)
-                currentUserDb.child("lastName").setValue(user.lastName)
-                println("current: $currentUserDb")
-
-            } else {
-
-            }
-
-        }
-        return uid
-    }
-
-    fun loginUser(email: String, password: String): String {
-        var loggedId = ""
-
+    fun loginGoogle(acct: GoogleSignInAccount){
+        val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
+        var userFireBase: FirebaseUser? = null
+        var userEntity: UserEntity? = null
         try {
-            mAuth!!.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    loggedId = task.result.user.uid
-                    println("UID: $loggedId")
-                    println("UID: ${task.result.user.displayName}")
-                }
-            }
+            mAuth!!.signInWithCredential(credential)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("REPO", "signInWithCredential:success")
+                            userFireBase = mAuth!!.currentUser
+                            mSecurityPreferences.storeString(CareConstants.USER.USER_UID, userFireBase!!.uid)
+                            mSecurityPreferences.storeString(CareConstants.USER.USER_NAME, userFireBase!!.displayName!!)
+                            mSecurityPreferences.storeString(CareConstants.USER.USER_EMAIL, userFireBase!!.email!!)
+                            mSecurityPreferences.storeString(CareConstants.USER.USER_PHOTO, userFireBase!!.photoUrl.toString())
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("REPO", "signInWithCredential:failure", task.exception)
+
+                        }
+
+                    }
+            println("user info: ${userEntity?.email} - ${userEntity?.username}")
         } catch (e: Exception) {
-            loggedId = ""
+            throw e
         }
-        return loggedId
-    }
-
-    fun getCurrentUserInfo(uid: String){
-
-       val dbRef = mDatabase!!.reference.child("Users").child(uid)
-        dbRef.addListenerForSingleValueEvent(object: ValueEventListener{
-            override fun onCancelled(p0: DatabaseError?) {
-
-            }
-
-            override fun onDataChange(p0: DataSnapshot?) {
-               
-            }
-
-        })
 
     }
+
 
 }
