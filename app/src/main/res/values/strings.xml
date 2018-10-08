@@ -7,4 +7,8 @@
     <string name="cadastrar">Cadastrar</string>
     <string name="preencha_campos">Preencha os campos corretamente</string>
     <string name="verifique_conexao">Verifique conexão</string>
+
+    <string name="facebook_app_id">166519700892665</string>
+    <string name="fb_login_protocol_scheme">fb166519700892665</string>
+
 </resources>

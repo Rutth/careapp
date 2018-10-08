@@ -41,7 +41,7 @@ class SplashActivity : AwesomeSplash() {
         configSplash.setTitleTextSize(30f)
         configSplash.setAnimTitleDuration(3000);
         configSplash.setAnimTitleTechnique(Techniques.FlipInX);
-        configSplash.setTitleFont("fonts/lubalingraphstd_demi.otf");
+        configSplash.setTitleFont("fonts/lubalingraph.ttf");
     }
 
     override fun animationsFinished() {
