@@ -18,12 +18,12 @@ class SplashActivity : AwesomeSplash() {
         mSecurityPreferences = SecurityPreferences(this)
 
         configSplash.setBackgroundColor(R.color.colorPrimaryDark)
-        configSplash.setAnimCircularRevealDuration(2000)
+        configSplash.setAnimCircularRevealDuration(1000)
         configSplash.setRevealFlagX(Flags.REVEAL_RIGHT)
         configSplash.setRevealFlagY(Flags.REVEAL_BOTTOM)
 
         configSplash.setLogoSplash(R.drawable.logo_care)
-        configSplash.setAnimLogoSplashDuration(2000)
+        configSplash.setAnimLogoSplashDuration(1000)
         configSplash.setAnimLogoSplashTechnique(Techniques.FadeIn)
 
 
@@ -47,6 +47,9 @@ class SplashActivity : AwesomeSplash() {
     override fun animationsFinished() {
         if(mSecurityPreferences.getStoredString(CareConstants.USER.USER_UID) != ""){
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        } else {
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
     }

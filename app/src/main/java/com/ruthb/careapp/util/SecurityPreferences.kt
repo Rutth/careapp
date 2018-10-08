@@ -17,4 +17,8 @@ class SecurityPreferences(context: Context) {
     fun removeStoredString(key: String) {
         mSharedPreferences.edit().remove(key).apply()
     }
+
+    fun deleteAll(){
+        mSharedPreferences.edit().clear().apply()
+    }
 }
