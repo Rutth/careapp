@@ -22,7 +22,7 @@ class SplashActivity : AwesomeSplash() {
         configSplash.setRevealFlagX(Flags.REVEAL_RIGHT)
         configSplash.setRevealFlagY(Flags.REVEAL_BOTTOM)
 
-        configSplash.setLogoSplash(R.drawable.logo_care)
+        configSplash.setLogoSplash(R.drawable.logo_care_red)
         configSplash.setAnimLogoSplashDuration(1000)
         configSplash.setAnimLogoSplashTechnique(Techniques.FadeIn)
 
@@ -36,14 +36,14 @@ class SplashActivity : AwesomeSplash() {
         configSplash.setPathSplashFillColor(R.color.colorPrimary)
 
 
-        configSplash.setTitleSplash("Care");
-        configSplash.setTitleTextColor(android.R.color.white);
+        configSplash.setTitleSplash("Care")
+        configSplash.setTitleTextColor(android.R.color.white)
         configSplash.setTitleTextSize(30f)
-        configSplash.setAnimTitleDuration(3000);
-        configSplash.setAnimTitleTechnique(Techniques.FlipInX);
-        configSplash.setTitleFont("fonts/lubalingraph.ttf");
-    }
+        configSplash.setAnimTitleDuration(3000)
+        configSplash.setAnimTitleTechnique(Techniques.FlipInX)
+        configSplash.setTitleFont("fonts/lubalingraph.ttf")
 
+    }
     override fun animationsFinished() {
         if(mSecurityPreferences.getStoredString(CareConstants.USER.USER_UID) != ""){
             startActivity(Intent(this, MainActivity::class.java))
@@ -58,4 +58,5 @@ class SplashActivity : AwesomeSplash() {
 //        super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_splash)
 //    }
+
 }
