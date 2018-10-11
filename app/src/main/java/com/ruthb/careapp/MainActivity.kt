@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import com.ruthb.careapp.business.UserBusiness
 import com.ruthb.careapp.constants.CareConstants
+import com.ruthb.careapp.helper.CircleTransform
 import com.ruthb.careapp.util.SecurityPreferences
 import com.ruthb.careapp.util.ValidationException
 import com.squareup.picasso.Picasso
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         } else {
             setInfo()
         }
-        
+
         setListeners()
         println("INFO: ${mSecurityPreferences.getStoredString(CareConstants.USER.USER_UID)} - ${mSecurityPreferences.getStoredString(CareConstants.USER.USER_NAME)} - ${mSecurityPreferences.getStoredString(CareConstants.USER.USER_EMAIL)} - ${mSecurityPreferences.getStoredString(CareConstants.USER.USER_PHOTO)}")
     }
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         Picasso.get()
                 .load(mSecurityPreferences.getStoredString(CareConstants.USER.USER_PHOTO))
+                .transform(CircleTransform())
                 .placeholder(R.drawable.ic_user_placeholder)
                 .error(R.drawable.ic_user_placeholder)
                 .into(imgUser)

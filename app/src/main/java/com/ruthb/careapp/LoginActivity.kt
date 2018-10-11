@@ -52,15 +52,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         btnLoginGoogle.setOnClickListener(this)
         btnLoginFacebook.setOnClickListener(this)
         login_button.setOnClickListener(this)
-        sign_in_google.setOnClickListener {
-            handleLoginGoogle()
-        }
+
     }
 
     override fun onClick(v: View) {
         when (v.id) {
             R.id.btnLoginGoogle -> {
-                sign_in_google.isPressed = true
+                handleLoginGoogle()
             }
             R.id.btnLoginFacebook -> {
                 login_button.callOnClick()

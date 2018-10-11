@@ -55,11 +55,14 @@ class UserRepo private constructor(context: Context) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("REPO", "signInWithCredential:success")
                     userFireBase = mAuth!!.currentUser
+
+                    val photo = "${userFireBase?.photoUrl!!}?height=500"
+
                     mSecurityPreferences.storeString(CareConstants.USER.USER_UID, userFireBase?.uid!!)
                     mSecurityPreferences.storeString(CareConstants.USER.USER_NAME, userFireBase?.displayName!!)
                     mSecurityPreferences.storeString(CareConstants.USER.USER_EMAIL, userFireBase?.email!!)
-                    mSecurityPreferences.storeString(CareConstants.USER.USER_PHOTO, userFireBase?.photoUrl!!.toString())
-                    mSecurityPreferences.storeString(CareConstants.USER.USER_TYPE, userFireBase?.providers!!.get(0))
+                    mSecurityPreferences.storeString(CareConstants.USER.USER_PHOTO, photo)
+                    mSecurityPreferences.storeString(CareConstants.USER.USER_TYPE, userFireBase?.providers!![0])
                     println("provider: ${userFireBase?.providers}" )
 
                 } else {
@@ -83,11 +86,14 @@ class UserRepo private constructor(context: Context) {
     fun getUser(){
         try{
             var userFireBase: FirebaseUser? = mAuth!!.currentUser
+
+            val photo = "${userFireBase?.photoUrl!!}?height=500"
+
             mSecurityPreferences.storeString(CareConstants.USER.USER_UID, userFireBase?.uid!!)
             mSecurityPreferences.storeString(CareConstants.USER.USER_NAME, userFireBase?.displayName!!)
             mSecurityPreferences.storeString(CareConstants.USER.USER_EMAIL, userFireBase?.email!!)
-            mSecurityPreferences.storeString(CareConstants.USER.USER_PHOTO, userFireBase?.photoUrl!!.toString())
-            mSecurityPreferences.storeString(CareConstants.USER.USER_TYPE, userFireBase?.providers!!.get(0))
+            mSecurityPreferences.storeString(CareConstants.USER.USER_PHOTO, photo)
+            mSecurityPreferences.storeString(CareConstants.USER.USER_TYPE, userFireBase?.providers!![0])
             println("provider: ${userFireBase?.providers}" )
         } catch (e: Exception){
             throw e
