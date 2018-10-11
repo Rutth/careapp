@@ -1,5 +1,6 @@
 package com.ruthb.careapp
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -55,13 +56,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setListeners() {
         logout.setOnClickListener(this)
+        manual.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
         when (v.id) {
             R.id.logout -> {
                 mUserBusiness.logout(mSecurityPreferences.getStoredString(CareConstants.USER.USER_TYPE))
+                val intent = Intent(this, LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
             }
+            R.id.manual -> {
+                startActivity(Intent(this, ManualActivity::class.java))
+            }
+
         }
     }
 
