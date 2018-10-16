@@ -4,12 +4,10 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import com.ruthb.careapp.business.UserBusiness
 import com.ruthb.careapp.constants.CareConstants
 import com.ruthb.careapp.helper.CircleTransform
 import com.ruthb.careapp.util.SecurityPreferences
-import com.ruthb.careapp.util.ValidationException
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -57,6 +55,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun setListeners() {
         logout.setOnClickListener(this)
         manual.setOnClickListener(this)
+        addInfo.setOnClickListener(this)
+        patient.setOnClickListener(this)
+
     }
 
     override fun onClick(v: View) {
