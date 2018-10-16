@@ -71,6 +71,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.manual -> {
                 startActivity(Intent(this, ManualActivity::class.java))
             }
+            R.id.patient -> {
+                startActivity(Intent(this, PatientActivity::class.java))
+            }
 
         }
     }

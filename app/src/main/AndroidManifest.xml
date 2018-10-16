@@ -21,7 +21,7 @@
         <activity android:name=".RegisterActivity" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -31,8 +31,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ManualActivity"
-            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".ManualActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="Manual do cuidador"/>
+
+        <activity
+            android:name=".PatientActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="Pacientes"/>
     </application>
 
 </manifest>
