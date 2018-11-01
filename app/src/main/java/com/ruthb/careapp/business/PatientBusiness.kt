@@ -8,8 +8,9 @@ class PatientBusiness(var context: Context) {
     private val mUserRepository: PatientRepo = PatientRepo.getInstance(context)
 
 
-    fun registerPatient(patientEntity: PatientEntity){
+    fun registerPatient(patientEntity: PatientEntity) {
         mUserRepository.initialize()
         mUserRepository.registerPatient(patientEntity)
     }
+
 }

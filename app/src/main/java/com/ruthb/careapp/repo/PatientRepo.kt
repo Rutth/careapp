@@ -1,11 +1,15 @@
 package com.ruthb.careapp.repo
 
 import android.content.Context
+import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.ruthb.careapp.entities.PatientEntity
 import com.ruthb.careapp.util.SecurityPreferences
+import com.google.firebase.database.DataSnapshot
+
+
 
 class PatientRepo private constructor(context: Context) {
     private var mDatabaseReference: DatabaseReference? = null
@@ -47,4 +51,6 @@ class PatientRepo private constructor(context: Context) {
         }
 
     }
+
+
 }

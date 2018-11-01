@@ -19,7 +19,7 @@ class AddPatientActivity : AppCompatActivity() {
         mPatientBusiness = PatientBusiness(this)
 
         btnSave.setOnClickListener {
-            val toast = Toast.makeText(this, "Toast notification!", Toast.LENGTH_SHORT)
+            val toast = Toast.makeText(this, "Sucesso", Toast.LENGTH_SHORT)
 
             val toastLayout = layoutInflater.inflate(R.layout.toast_custom, null)
             toast.view = toastLayout
@@ -48,6 +48,6 @@ class AddPatientActivity : AppCompatActivity() {
         val neighborhood = edtNeighborhood.text.toString()
         val city = edtCity.text.toString()
 
-        return PatientEntity(name, age.toInt(), phone, address, neighborhood, city)
+        return PatientEntity(name = name, age = age.toInt(), phone = phone, address = address, neighborhood = neighborhood, city = city)
     }
 }

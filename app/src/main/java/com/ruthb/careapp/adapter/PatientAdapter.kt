@@ -4,10 +4,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.ruthb.careapp.R
+import com.ruthb.careapp.entities.PatientEntity
 import com.ruthb.careapp.viewholder.PatientViewHolder
 import com.ruthb.careapp.util.OnPatientListener
 
-class PatientAdapter(val patientList: List<String>, val listener: OnPatientListener) : RecyclerView.Adapter<PatientViewHolder>() {
+class PatientAdapter(val patientList: List<PatientEntity>, val listener: OnPatientListener) : RecyclerView.Adapter<PatientViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PatientViewHolder {
@@ -25,6 +26,6 @@ class PatientAdapter(val patientList: List<String>, val listener: OnPatientListe
     override fun onBindViewHolder(holder: PatientViewHolder, position: Int) {
         val patient = patientList[position]
 
-        //holder.bindData(patient)
+        holder.bindData(patient)
     }
 }
