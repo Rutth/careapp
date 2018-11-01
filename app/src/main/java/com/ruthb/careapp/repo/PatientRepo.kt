@@ -35,7 +35,7 @@ class PatientRepo private constructor(context: Context) {
     fun initialize() {
         if (mDatabase == null) {
             val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-            database.setPersistenceEnabled(true)
+            //database.setPersistenceEnabled(true)
             mDatabase = database
         }
 

@@ -65,7 +65,6 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
     fun initialize() {
         if (mDatabase == null) {
             val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-            database.setPersistenceEnabled(true)
             mDatabase = database
         }
 
