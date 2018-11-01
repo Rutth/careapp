@@ -36,9 +36,16 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
         addPatient.setOnClickListener(this)
         isUp = false
 
-        mListener = object : OnPatientListener{
+        mListener = object : OnPatientListener {
             override fun onClickPatient() {
+                if (isUp) {
+                    slideDown(modal)
 
+                } else {
+                    slideUp(modal)
+
+                }
+                isUp = !isUp
             }
 
         }
@@ -52,14 +59,7 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         startActivity(Intent(this, AddPatientActivity::class.java))
-//        if (isUp) {
-//            slideDown(modal)
-//
-//        } else {
-//            slideUp(modal)
-//
-//        }
-//        isUp = !isUp
+
     }
 
     fun initialize() {
@@ -71,7 +71,7 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
         mAuth = FirebaseAuth.getInstance()
     }
 
-    fun listPatient(){
+    fun listPatient() {
         initialize()
         var list: MutableList<PatientEntity> = mutableListOf()
         var mPatientListener: ValueEventListener? = null
@@ -82,9 +82,6 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                val element = dataSnapshot.getValue<PatientEntity>(PatientEntity::class.java)
-                println("Element: $element")
-
                 println("KEY: ${dataSnapshot.key} - ${dataSnapshot.children} ")
 
                 val td = dataSnapshot.children.toMutableList()
@@ -92,12 +89,17 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
 
                 for (child in dataSnapshot.children) {
                     val key = child.key
-                    val element = child.getValue<PatientEntity>(PatientEntity::class.java)
-
-                    println("KEY: $key ")
-                    if (element != null) {
-                        list.add(element)
+                    val name = child.child("name").value.toString()
+                    val phone = child.child("phone").value.toString()
+                    val neighborhood = child.child("neighborhood").value.toString()
+                    val age = child.child("age").value.toString()
+                    val address = child.child("address").value.toString()
+                    val city = child.child("city").value.toString()
+                    if (child != null) {
+                        list.add(PatientEntity(key!!, name!!, age.toInt()!!, phone!!, address!!, neighborhood!!, city!!))
                     }
+
+
                 }
 
                 recyclerPatient.adapter = PatientAdapter(list, mListener)
