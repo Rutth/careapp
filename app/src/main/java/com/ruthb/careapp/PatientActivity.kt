@@ -1,5 +1,6 @@
 package com.ruthb.careapp
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.opengl.ETC1.getHeight
@@ -21,14 +22,15 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        if (isUp) {
-            slideDown(modal)
-
-        } else {
-            slideUp(modal)
-
-        }
-        isUp = !isUp
+        startActivity(Intent(this, AddPatientActivity::class.java))
+//        if (isUp) {
+//            slideDown(modal)
+//
+//        } else {
+//            slideUp(modal)
+//
+//        }
+//        isUp = !isUp
     }
 
     private fun slideUp(view: View) {

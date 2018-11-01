@@ -33,13 +33,15 @@
         </activity>
         <activity
             android:name=".ManualActivity"
-            android:parentActivityName=".MainActivity"
-            android:label="Manual do cuidador"/>
-
+            android:label="Manual do cuidador"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".PatientActivity"
-            android:parentActivityName=".MainActivity"
-            android:label="Pacientes"/>
+            android:label="Pacientes"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".AddPatientActivity"
+            android:label="Adicionar Paciente"
+            android:parentActivityName=".PatientActivity"></activity>
     </application>
 
 </manifest>
