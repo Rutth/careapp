@@ -95,8 +95,9 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
                     val age = child.child("age").value.toString()
                     val address = child.child("address").value.toString()
                     val city = child.child("city").value.toString()
+                    val gender = child.child("gender").value.toString()
                     if (child != null) {
-                        list.add(PatientEntity(key!!, name!!, age.toInt()!!, phone!!, address!!, neighborhood!!, city!!))
+                        list.add(PatientEntity(key!!, name, age.toInt(), phone, address, neighborhood, city, gender))
                     }
 
 

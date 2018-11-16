@@ -3,14 +3,20 @@ package com.ruthb.careapp
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.TextView
 import android.widget.Toast
+import com.ruthb.careapp.adapter.SpinnerPatient
 import com.ruthb.careapp.business.PatientBusiness
 import com.ruthb.careapp.entities.PatientEntity
 import kotlinx.android.synthetic.main.activity_add_patient.*
+import kotlinx.android.synthetic.main.activity_add_patient.spinner
 
 class AddPatientActivity : AppCompatActivity() {
+
     lateinit var mPatientBusiness: PatientBusiness
+    var genderPatient: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +44,21 @@ class AddPatientActivity : AppCompatActivity() {
 
 
         }
+        spinner.apply {
+            adapter = SpinnerPatient(this@AddPatientActivity, mutableListOf("Feminino", "Masculino"))
+        }
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                spinner.getItemAtPosition(position)
+                genderPatient = spinner.selectedItem as String
+                println("Gender $genderPatient")
+            }
+
+        }
     }
 
     private fun collectPatient(): PatientEntity {
@@ -48,6 +69,8 @@ class AddPatientActivity : AppCompatActivity() {
         val neighborhood = edtNeighborhood.text.toString()
         val city = edtCity.text.toString()
 
-        return PatientEntity(name = name, age = age.toInt(), phone = phone, address = address, neighborhood = neighborhood, city = city)
+        return PatientEntity(name = name, age = age.toInt(), phone = phone, address = address, neighborhood = neighborhood, city = city, gender = genderPatient)
     }
 }
+
+

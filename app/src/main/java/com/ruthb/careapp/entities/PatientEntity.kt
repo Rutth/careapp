@@ -6,4 +6,5 @@ data class PatientEntity(var key: String = "",
                          var phone: String = "",
                          var address: String = "",
                          var neighborhood: String = "",
-                         var city: String = "")
+                         var city: String = "",
+                         var gender: String = "")
