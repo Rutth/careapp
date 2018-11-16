@@ -100,7 +100,6 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
                         list.add(PatientEntity(key!!, name, age.toInt(), phone, address, neighborhood, city, gender))
                     }
 
-
                 }
 
                 recyclerPatient.adapter = PatientAdapter(list, mListener)
@@ -109,11 +108,7 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Getting Post failed, log a message
                 Log.w("VIDEO", "loadPost:onCancelled", databaseError.toException())
-                // [START_EXCLUDE]
-
-                // [END_EXCLUDE]
             }
         }
         mDatabaseReference?.addListenerForSingleValueEvent(postListener)
@@ -131,6 +126,7 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
         animate.duration = 500
         animate.fillAfter = true
         view.startAnimation(animate)
+        addPatient.visibility = View.INVISIBLE
     }
 
     private fun slideDown(view: View) {
@@ -142,5 +138,15 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
         animate.duration = 500
         animate.fillAfter = true
         view.startAnimation(animate)
+
+        addPatient.visibility = View.VISIBLE
+        val animateBtn = TranslateAnimation(
+                100f,
+                0f,
+                0f,
+                addPatient.height.toFloat())
+        animate.duration = 1000
+        animate.fillAfter = true
+        addPatient.startAnimation(animateBtn)
     }
 }
