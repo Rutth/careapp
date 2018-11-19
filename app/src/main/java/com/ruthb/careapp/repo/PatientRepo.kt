@@ -8,7 +8,7 @@ import com.google.firebase.database.*
 import com.ruthb.careapp.entities.PatientEntity
 import com.ruthb.careapp.util.SecurityPreferences
 import com.google.firebase.database.DataSnapshot
-
+import com.ruthb.careapp.entities.SicknessEntity
 
 
 class PatientRepo private constructor(context: Context) {
@@ -52,6 +52,17 @@ class PatientRepo private constructor(context: Context) {
             throw e
         }
 
+    }
+
+    fun registerSickness(key: String, sicknessEntity: SicknessEntity) {
+        try {
+            mDatabaseReference = mDatabase!!.reference!!.child("Patients")
+            mDatabaseReference?.child(mAuth?.currentUser!!.uid)?.child(key)?.child("Sickness")?.push()?.setValue(sicknessEntity)
+
+
+        } catch (e: Exception){
+            throw e
+        }
     }
 
 
