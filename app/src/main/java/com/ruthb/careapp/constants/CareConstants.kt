@@ -14,4 +14,8 @@ class CareConstants {
         val FACEBOOK_TYPE = "facebook.com"
         val GOOGLE_TYPE = "google.com"
     }
+
+    object PATIENT {
+        val PATIENT = "patient"
+    }
 }

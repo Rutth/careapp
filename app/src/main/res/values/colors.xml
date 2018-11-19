@@ -8,4 +8,5 @@
 
     <color name="backgroundModal">#37A4CD</color>
     <color name="borderGray">#717171</color>
+    <color name="bgDialog">#906CCFF6</color>
 </resources>

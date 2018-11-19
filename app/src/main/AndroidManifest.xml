@@ -17,8 +17,8 @@
 
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".RegisterActivity" />
         <activity
             android:name=".LoginActivity"
@@ -26,8 +26,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,17 +37,28 @@
         <activity
             android:name=".ManualActivity"
             android:label="Manual do cuidador"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".PatientActivity"
             android:label="Pacientes"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".AddPatientActivity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddPatientActivity"
             android:label="Adicionar Paciente"
+            android:parentActivityName=".PatientActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SickActivity"
+            android:parentActivityName=".PatientActivity"
             android:screenOrientation="portrait"
-            android:parentActivityName=".PatientActivity"></activity>
+            android:label="Doenças"/>
+        <activity
+            android:name=".AddSicknessActivity"
+            android:parentActivityName=".SickActivity"
+            android:screenOrientation="portrait"
+            android:label="Adicionar doença"></activity>
     </application>
 
 </manifest>

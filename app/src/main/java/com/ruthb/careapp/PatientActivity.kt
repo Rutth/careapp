@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.ruthb.careapp.adapter.PatientAdapter
 import com.ruthb.careapp.business.PatientBusiness
+import com.ruthb.careapp.constants.CareConstants
 import com.ruthb.careapp.entities.PatientEntity
 import com.ruthb.careapp.util.OnPatientListener
 import kotlinx.android.synthetic.main.activity_patient.*
@@ -37,14 +38,20 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
         isUp = false
 
         mListener = object : OnPatientListener {
-            override fun onClickPatient() {
+            override fun onClickPatient(patient: PatientEntity) {
                 if (isUp) {
                     slideDown(modal)
-
                 } else {
                     slideUp(modal)
+                    patientName.text = patient.name
+
+                    btnSick.setOnClickListener {
+                        startActivity(Intent(this@PatientActivity, SickActivity::class.java).putExtra(CareConstants.PATIENT.PATIENT, patient))
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                    }
 
                 }
+
                 isUp = !isUp
             }
 
@@ -58,8 +65,10 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        startActivity(Intent(this, AddPatientActivity::class.java))
+        when (v.id) {
+            R.id.addPatient -> startActivity(Intent(this, AddPatientActivity::class.java))
 
+        }
     }
 
     fun initialize() {
@@ -89,6 +98,8 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
 
                 for (child in dataSnapshot.children) {
                     val key = child.key
+                    println("KEY CHILD: ${child.key} ")
+
                     val name = child.child("name").value.toString()
                     val phone = child.child("phone").value.toString()
                     val neighborhood = child.child("neighborhood").value.toString()

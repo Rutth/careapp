@@ -46,6 +46,8 @@ class PatientRepo private constructor(context: Context) {
         try {
             mDatabaseReference = mDatabase!!.reference!!.child("Patients")
             mDatabaseReference?.child(mAuth?.currentUser!!.uid)?.push()?.setValue(patient)
+
+
         } catch (e: Exception){
             throw e
         }
