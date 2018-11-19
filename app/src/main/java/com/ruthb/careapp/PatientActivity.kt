@@ -71,7 +71,7 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    fun initialize() {
+    private fun initialize() {
         if (mDatabase == null) {
             val database: FirebaseDatabase = FirebaseDatabase.getInstance()
             mDatabase = database
@@ -80,10 +80,9 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
         mAuth = FirebaseAuth.getInstance()
     }
 
-    fun listPatient() {
+    private fun listPatient() {
         initialize()
         var list: MutableList<PatientEntity> = mutableListOf()
-        var mPatientListener: ValueEventListener? = null
 
         mDatabaseReference = FirebaseDatabase.getInstance().reference.child("Patients")
                 .child(mAuth?.currentUser!!.uid)
@@ -123,7 +122,6 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
         mDatabaseReference?.addListenerForSingleValueEvent(postListener)
-        mPatientListener = postListener
 
     }
 
