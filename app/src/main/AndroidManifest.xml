@@ -53,14 +53,15 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".SickActivity"
+            android:label="Doenças"
             android:parentActivityName=".PatientActivity"
-            android:screenOrientation="portrait"
-            android:label="Doenças"/>
+            android:screenOrientation="portrait" />
+
         <activity
-            android:name=".AddSicknessActivity"
-            android:parentActivityName=".SickActivity"
-            android:screenOrientation="portrait"
-            android:label="Adicionar doença"></activity>
+            android:name=".ExamActivity"
+            android:label="Exames e consultas"
+            android:parentActivityName=".PatientActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

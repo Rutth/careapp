@@ -25,7 +25,9 @@ class PatientViewHolder(itemView: View, val context: Context, val listener: OnPa
         }
 
         layout.setOnClickListener {
-            listener.onClickPatient(patient)
+            println("position: $position - adapter: $adapterPosition - layout: $layoutPosition")
+            listener.onClickPatient(patient, layoutPosition)
+
         }
     }
 }

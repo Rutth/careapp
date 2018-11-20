@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.opengl.ETC1.getHeight
+import android.os.Build
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
@@ -38,7 +39,7 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
         isUp = false
 
         mListener = object : OnPatientListener {
-            override fun onClickPatient(patient: PatientEntity) {
+            override fun onClickPatient(patient: PatientEntity, position: Int) {
                 if (isUp) {
                     slideDown(modal)
                 } else {
@@ -47,6 +48,11 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
 
                     btnSick.setOnClickListener {
                         startActivity(Intent(this@PatientActivity, SickActivity::class.java).putExtra(CareConstants.PATIENT.PATIENT, patient))
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                    }
+
+                    btnExam.setOnClickListener {
+                        startActivity(Intent(this@PatientActivity, ExamActivity::class.java).putExtra(CareConstants.PATIENT.PATIENT, patient))
                         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
                     }
 

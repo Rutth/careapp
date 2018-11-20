@@ -8,6 +8,7 @@ import com.google.firebase.database.*
 import com.ruthb.careapp.entities.PatientEntity
 import com.ruthb.careapp.util.SecurityPreferences
 import com.google.firebase.database.DataSnapshot
+import com.ruthb.careapp.entities.ExamConsultation
 import com.ruthb.careapp.entities.SicknessEntity
 
 
@@ -48,7 +49,7 @@ class PatientRepo private constructor(context: Context) {
             mDatabaseReference?.child(mAuth?.currentUser!!.uid)?.push()?.setValue(patient)
 
 
-        } catch (e: Exception){
+        } catch (e: Exception) {
             throw e
         }
 
@@ -60,18 +61,29 @@ class PatientRepo private constructor(context: Context) {
             mDatabaseReference?.child(mAuth?.currentUser!!.uid)?.child(key)?.child("Sickness")?.push()?.setValue(sicknessEntity)
 
 
-        } catch (e: Exception){
+        } catch (e: Exception) {
             throw e
         }
     }
 
-    fun removeSickness(keySickness: String, keyPatient: String){
+    fun removeSickness(keySickness: String, keyPatient: String) {
         try {
             mDatabaseReference = mDatabase!!.reference!!.child("Patients")
             mDatabaseReference?.child(mAuth?.currentUser!!.uid)?.child(keyPatient)?.child("Sickness")?.child(keySickness)?.removeValue()
             println("key recebida: $keySickness")
 
-        } catch (e: Exception){
+        } catch (e: Exception) {
+            throw e
+        }
+    }
+
+    fun registerExam(examConsultation: ExamConsultation, key: String) {
+        try {
+            mDatabaseReference = mDatabase!!.reference!!.child("Patients")
+            mDatabaseReference?.child(mAuth?.currentUser!!.uid)?.child(key)?.child(examConsultation.type)?.push()?.setValue(examConsultation)
+
+
+        } catch (e: Exception) {
             throw e
         }
     }

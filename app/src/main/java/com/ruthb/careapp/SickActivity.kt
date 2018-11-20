@@ -31,7 +31,6 @@ class SickActivity : AppCompatActivity(), View.OnClickListener {
     private var mDatabaseReference: DatabaseReference? = null
     private var mDatabase: FirebaseDatabase? = null
     private var mAuth: FirebaseAuth? = null
-    lateinit var childEventListener: ChildEventListener
 
     lateinit var mListener: OnSicknessListener
     var list: MutableList<SicknessEntity> = mutableListOf()
@@ -114,8 +113,6 @@ class SickActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun listSickness() {
         initialize()
-
-
         mDatabaseReference = FirebaseDatabase.getInstance().reference.child("Patients")
                 .child(mAuth?.currentUser!!.uid).child(patient.key).child("Sickness")
 
