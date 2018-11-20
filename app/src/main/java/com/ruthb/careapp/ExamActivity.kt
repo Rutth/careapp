@@ -56,7 +56,7 @@ class ExamActivity : AppCompatActivity() {
             }
 
             override fun onDeleteExam(key: String) {
-                mPatientBusiness
+                mPatientBusiness.removeExam(key, mPatientEntity.key)
                 list.clear()
                 listExam()
             }

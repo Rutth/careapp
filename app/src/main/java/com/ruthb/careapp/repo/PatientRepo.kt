@@ -88,5 +88,17 @@ class PatientRepo private constructor(context: Context) {
         }
     }
 
+    //deixar generico para consulta
+    fun removeExam(keyExam: String, keyPatient: String) {
+        try {
+            mDatabaseReference = mDatabase!!.reference!!.child("Patients")
+            mDatabaseReference?.child(mAuth?.currentUser!!.uid)?.child(keyPatient)?.child("Exame")?.child(keyExam)?.removeValue()
+            println("key recebida: $keyExam")
+
+        } catch (e: Exception) {
+            throw e
+        }
+    }
+
 
 }
