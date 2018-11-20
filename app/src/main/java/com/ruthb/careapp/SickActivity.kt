@@ -31,6 +31,7 @@ class SickActivity : AppCompatActivity(), View.OnClickListener {
     private var mDatabaseReference: DatabaseReference? = null
     private var mDatabase: FirebaseDatabase? = null
     private var mAuth: FirebaseAuth? = null
+    lateinit var childEventListener: ChildEventListener
 
     lateinit var mListener: OnSicknessListener
     var list: MutableList<SicknessEntity> = mutableListOf()
@@ -45,8 +46,14 @@ class SickActivity : AppCompatActivity(), View.OnClickListener {
         patientName.text = patient.name
 
         mListener = object : OnSicknessListener {
+            override fun onDeleteSickness(key: String) {
+                mPatientBusiness.removeSickness(key, patient.key)
+                list.clear()
+                listSickness()
+            }
+
             override fun onClickSickness(sickness: SicknessEntity) {
-                Toast.makeText(this@SickActivity, sickness.name, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@SickActivity, "${sickness.name} - ${sickness.key}", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -126,8 +133,9 @@ class SickActivity : AppCompatActivity(), View.OnClickListener {
 
                     val name = child.child("name").value.toString()
                     val description = child.child("description").value.toString()
+
                     if (child != null) {
-                        list.add(SicknessEntity(name = name, description = description))
+                        list.add(SicknessEntity(name = name, description = description, key = key.toString()))
                     }
 
                 }
@@ -142,6 +150,8 @@ class SickActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
         mDatabaseReference?.addListenerForSingleValueEvent(postListener)
+
+
     }
 
 

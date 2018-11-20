@@ -19,4 +19,9 @@ class PatientBusiness(var context: Context) {
         mUserRepository.registerSickness(key, sicknessEntity)
     }
 
+    fun removeSickness(key: String, keyPatient: String){
+        mUserRepository.initialize()
+        mUserRepository.removeSickness(key, keyPatient)
+    }
+
 }
