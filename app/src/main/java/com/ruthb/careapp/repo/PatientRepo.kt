@@ -77,6 +77,7 @@ class PatientRepo private constructor(context: Context) {
         }
     }
 
+
     fun registerExam(examConsultation: ExamConsultation, key: String) {
         try {
             mDatabaseReference = mDatabase!!.reference!!.child("Patients")

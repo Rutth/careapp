@@ -1,16 +1,15 @@
-package com.ruthb.careapp
+package com.ruthb.careapp.view
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.opengl.ETC1.getHeight
-import android.os.Build
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import android.view.animation.TranslateAnimation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.ruthb.careapp.R
 import com.ruthb.careapp.adapter.PatientAdapter
 import com.ruthb.careapp.business.PatientBusiness
 import com.ruthb.careapp.constants.CareConstants

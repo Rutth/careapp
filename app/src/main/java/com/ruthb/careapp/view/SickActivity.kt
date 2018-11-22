@@ -1,7 +1,6 @@
-package com.ruthb.careapp
+package com.ruthb.careapp.view
 
 import android.app.Dialog
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -9,13 +8,13 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.ruthb.careapp.R
 import com.ruthb.careapp.adapter.SicknessAdapter
 import com.ruthb.careapp.business.PatientBusiness
 import com.ruthb.careapp.constants.CareConstants

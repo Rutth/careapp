@@ -1,4 +1,4 @@
-package com.ruthb.careapp
+package com.ruthb.careapp.view
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -17,7 +17,7 @@ import com.ruthb.careapp.business.UserBusiness
 import kotlinx.android.synthetic.main.activity_login.*
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.ruthb.careapp.repo.UserRepo
+import com.ruthb.careapp.R
 
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {

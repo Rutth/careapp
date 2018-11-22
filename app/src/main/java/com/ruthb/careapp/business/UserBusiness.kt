@@ -9,6 +9,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.ruthb.careapp.constants.CareConstants
 import com.ruthb.careapp.entities.UserEntity
+import com.ruthb.careapp.entities.UserInfo
 import com.ruthb.careapp.repo.UserRepo
 import com.ruthb.careapp.util.SecurityPreferences
 
@@ -63,16 +64,25 @@ class UserBusiness(var context: Context) {
     fun getUser(): Boolean {
         var over: Boolean = false
         mUserRepository.authInstance()
-        try {
+        over = try {
             mUserRepository.getUser()
-            over = true
+            true
         } catch (e: Exception) {
             throw e
-            over = false
+            false
         } finally {
             return over
         }
 
+    }
+
+    fun sendInfo(userInfo: UserInfo) {
+        mUserRepository.initialize()
+        try {
+            mUserRepository.sendUserInfo(userInfo)
+        } catch (e: Exception) {
+            throw e
+        }
 
     }
 

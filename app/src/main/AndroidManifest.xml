@@ -18,16 +18,16 @@
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RegisterActivity" />
+        <activity android:name=".view.RegisterActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".view.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".view.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -37,31 +37,36 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ManualActivity"
+            android:name=".view.ManualActivity"
             android:label="Manual do cuidador"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".view.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PatientActivity"
+            android:name=".view.PatientActivity"
             android:label="Pacientes"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".view.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AddPatientActivity"
+            android:name=".view.AddPatientActivity"
             android:label="Adicionar Paciente"
-            android:parentActivityName=".PatientActivity"
+            android:parentActivityName=".view.PatientActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SickActivity"
+            android:name=".view.SickActivity"
             android:label="Doenças"
-            android:parentActivityName=".PatientActivity"
+            android:parentActivityName=".view.PatientActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ExamActivity"
+            android:name=".view.ExamActivity"
             android:label="Exames e consultas"
-            android:parentActivityName=".PatientActivity"
+            android:parentActivityName=".view.PatientActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ProfileActivity"></activity>
+
+        <activity
+            android:name=".view.ProfileActivity"
+            android:label="Editar perfil"
+            android:parentActivityName=".view.MainActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.ruthb.careapp
+package com.ruthb.careapp.view
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
 import android.widget.Toast
+import com.ruthb.careapp.R
 import com.ruthb.careapp.adapter.SpinnerPatient
 import com.ruthb.careapp.business.PatientBusiness
 import com.ruthb.careapp.entities.PatientEntity

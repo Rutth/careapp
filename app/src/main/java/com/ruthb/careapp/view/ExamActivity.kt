@@ -1,4 +1,4 @@
-package com.ruthb.careapp
+package com.ruthb.careapp.view
 
 import android.app.Dialog
 import android.support.v7.app.AppCompatActivity
@@ -17,6 +17,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.ruthb.careapp.R
 import com.ruthb.careapp.adapter.ExamAdapter
 import com.ruthb.careapp.business.PatientBusiness
 import com.ruthb.careapp.constants.CareConstants

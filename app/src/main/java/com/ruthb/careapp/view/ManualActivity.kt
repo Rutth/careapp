@@ -1,8 +1,9 @@
-package com.ruthb.careapp
+package com.ruthb.careapp.view
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener
+import com.ruthb.careapp.R
 import kotlinx.android.synthetic.main.activity_manual.*
 
 

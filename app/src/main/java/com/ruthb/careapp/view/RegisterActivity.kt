@@ -1,11 +1,10 @@
-package com.ruthb.careapp
+package com.ruthb.careapp.view
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import com.ruthb.careapp.R
 import com.ruthb.careapp.business.UserBusiness
-import com.ruthb.careapp.entities.UserEntity
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {

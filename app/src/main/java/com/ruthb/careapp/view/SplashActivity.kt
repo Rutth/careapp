@@ -1,7 +1,8 @@
-package com.ruthb.careapp
+package com.ruthb.careapp.view
 
 import android.content.Intent
 import com.daimajia.androidanimations.library.Techniques
+import com.ruthb.careapp.R
 import com.ruthb.careapp.constants.CareConstants
 import com.ruthb.careapp.util.SecurityPreferences
 import com.viksaa.sssplash.lib.activity.AwesomeSplash

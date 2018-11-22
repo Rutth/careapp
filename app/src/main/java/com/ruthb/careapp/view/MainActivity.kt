@@ -1,4 +1,4 @@
-package com.ruthb.careapp
+package com.ruthb.careapp.view
 
 import android.Manifest
 import android.content.Intent
@@ -15,14 +15,15 @@ import com.ruthb.careapp.helper.CircleTransform
 import com.ruthb.careapp.util.SecurityPreferences
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
-import android.R.attr.y
-import android.R.attr.x
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.widget.Toast
+import com.ruthb.careapp.R
+import com.google.firebase.iid.FirebaseInstanceId
+
 
 
 
@@ -57,7 +58,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, SensorEventListe
         } else {
             setInfo()
         }
-
+        onTokenRefresh()
         setListeners()
         println("INFO: ${mSecurityPreferences.getStoredString(CareConstants.USER.USER_UID)} - ${mSecurityPreferences.getStoredString(CareConstants.USER.USER_NAME)} - ${mSecurityPreferences.getStoredString(CareConstants.USER.USER_EMAIL)} - ${mSecurityPreferences.getStoredString(CareConstants.USER.USER_PHOTO)}")
     }
@@ -82,13 +83,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, SensorEventListe
 
                 if (acceleration > 3.25f) {
                     mLastShakeTime = curTime
-                    Toast.makeText(this@MainActivity, "Shake", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "Emergência!", Toast.LENGTH_SHORT).show()
                     if (ContextCompat.checkSelfPermission(this@MainActivity, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(this@MainActivity, arrayOf(Manifest.permission.CALL_PHONE),1)
-                    }
-                    else
-                    {
-                        startActivity(Intent(Intent.ACTION_DIAL).setData(Uri.parse("tel:190")))
+                        ActivityCompat.requestPermissions(this@MainActivity, arrayOf(Manifest.permission.CALL_PHONE), 1)
+                    } else {
+                        startActivity(Intent(Intent.ACTION_DIAL).setData(Uri.parse("tel:192")))
                     }
 
                 }
@@ -130,8 +129,27 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, SensorEventListe
             R.id.patient -> {
                 startActivity(Intent(this, PatientActivity::class.java))
             }
+            R.id.addInfo -> {
+                startActivity(Intent(this, ProfileActivity::class.java))
+            }
 
         }
+    }
+
+    fun onTokenRefresh() {
+        // Get updated InstanceID token.
+        val refreshedToken = FirebaseInstanceId.getInstance().token
+        Log.d("MAIN", "Refreshed token: " + refreshedToken!!)
+
+        // If you want to send messages to this application instance or
+        // manage this apps subscriptions on the server side, send the
+        // Instance ID token to your app server.
+        sendRegistrationToServer(refreshedToken)
+    }
+
+    private fun sendRegistrationToServer(refreshedToken: String) {
+        println("SEND: $refreshedToken")
+
     }
 
 }
