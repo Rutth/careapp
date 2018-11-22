@@ -20,18 +20,19 @@ class PatientBusiness(var context: Context) {
         mUserRepository.registerSickness(key, sicknessEntity)
     }
 
-    fun removeSickness(key: String, keyPatient: String){
+    fun removeSickness(key: String, keyPatient: String) {
         mUserRepository.initialize()
         mUserRepository.removeSickness(key, keyPatient)
     }
 
-    fun registerExam(examConsultation: ExamConsultation, key: String){
+    fun registerExam(examConsultation: ExamConsultation, key: String) {
         mUserRepository.initialize()
         mUserRepository.registerExam(examConsultation, key)
     }
-    fun removeExam(keyExam: String, keyPatient: String){
+
+    fun removeExam(type: String, keyExam: String, keyPatient: String) {
         mUserRepository.initialize()
-        mUserRepository.removeExam(keyExam, keyPatient)
+        mUserRepository.removeExam(type, keyExam, keyPatient)
     }
 
 }

@@ -56,12 +56,12 @@
             android:label="Doenças"
             android:parentActivityName=".PatientActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ExamActivity"
             android:label="Exames e consultas"
             android:parentActivityName=".PatientActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>

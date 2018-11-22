@@ -36,6 +36,7 @@ class ExamActivity : AppCompatActivity() {
     lateinit var mListener: OnExamConsuListener
 
     var list: MutableList<ExamConsultation> = mutableListOf()
+    var listCons: MutableList<ExamConsultation> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,21 +50,30 @@ class ExamActivity : AppCompatActivity() {
         }
 
         listExam()
+        listCons()
 
         mListener = object : OnExamConsuListener {
             override fun onClickExam(examConsultation: ExamConsultation, position: Int) {
 
             }
 
-            override fun onDeleteExam(key: String) {
-                mPatientBusiness.removeExam(key, mPatientEntity.key)
-                list.clear()
-                listExam()
+            override fun onDeleteExam(type: String, key: String) {
+                mPatientBusiness.removeExam(type, key, mPatientEntity.key)
+                if (type.startsWith("E")) {
+                    list.clear()
+                    listExam()
+                } else {
+                    listCons.clear()
+                    listCons()
+                }
+
+
             }
 
         }
 
         recyclerExam.adapter = ExamAdapter(mutableListOf(), mListener)
+        recyclerCons.adapter = ExamAdapter(mutableListOf(), mListener)
     }
 
     private fun add() {
@@ -146,8 +156,14 @@ class ExamActivity : AppCompatActivity() {
                     val tvMessage = toast.view.findViewById<TextView>(R.id.tvMessage)
                     tvMessage.text = "Cadastrado com sucesso!"
                     toast.show()
-                    list.clear()
-                    listExam()
+
+                    if (spinner.selectedItem.toString().startsWith("E")) {
+                        list.clear()
+                        listExam()
+                    } else {
+                        listCons.clear()
+                        listCons()
+                    }
                     dialog.dismiss()
                 } catch (e: Exception) {
                     Toast.makeText(dialog.context, getString(R.string.tente_novamente), Toast.LENGTH_SHORT).show()
@@ -161,6 +177,7 @@ class ExamActivity : AppCompatActivity() {
         dialog.show()
 
     }
+
     private fun initialize() {
         if (mDatabase == null) {
             val database: FirebaseDatabase = FirebaseDatabase.getInstance()
@@ -210,5 +227,44 @@ class ExamActivity : AppCompatActivity() {
         mDatabaseReference?.addListenerForSingleValueEvent(postListener)
     }
 
+    private fun listCons() {
+        initialize()
+        mDatabaseReference = FirebaseDatabase.getInstance().reference.child("Patients")
+                .child(mAuth?.currentUser!!.uid).child(mPatientEntity.key).child("Consulta")
+
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                println("KEY: ${dataSnapshot.key} - ${dataSnapshot.children} ")
+
+                val td = dataSnapshot.children.toMutableList()
+                println("td: $td")
+
+                for (child in dataSnapshot.children) {
+                    val key = child.key
+                    println("KEY CHILD: ${child.key} ")
+
+                    val name = child.child("name").value.toString()
+                    val date = child.child("date").value.toString()
+                    val hour = child.child("hour").value.toString()
+                    val type = child.child("type").value.toString()
+
+                    if (child != null) {
+                        listCons.add(ExamConsultation(name = name, date = date, hour = hour, type = type, key = key.toString()))
+                    }
+
+                }
+
+                recyclerCons.adapter = ExamAdapter(listCons, mListener)
+                recyclerCons.layoutManager = LinearLayoutManager(this@ExamActivity)
+
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w("EXAM", "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+        mDatabaseReference?.addListenerForSingleValueEvent(postListener)
+    }
 
 }

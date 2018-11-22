@@ -31,7 +31,7 @@ class ExamConsultationViewHolder(itemView: View, val context: Context, val liste
         }
 
         delete.setOnClickListener {
-            listener.onDeleteExam(examConsultation.key)
+            listener.onDeleteExam(examConsultation.type, examConsultation.key)
         }
     }
 }
