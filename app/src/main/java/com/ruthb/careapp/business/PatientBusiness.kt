@@ -35,4 +35,9 @@ class PatientBusiness(var context: Context) {
         mUserRepository.removeExam(type, keyExam, keyPatient)
     }
 
+    fun removePatient(key: String){
+        mUserRepository.initialize()
+        mUserRepository.removePatient(key)
+    }
+
 }

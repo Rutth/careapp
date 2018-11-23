@@ -27,6 +27,7 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
     private var mAuth: FirebaseAuth? = null
 
     lateinit var mListener: OnPatientListener
+    var list: MutableList<PatientEntity> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +39,12 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
         isUp = false
 
         mListener = object : OnPatientListener {
+            override fun onDeleteClick(key: String) {
+                mPatientBusiness.removePatient(key)
+                list.clear()
+                listPatient()
+            }
+
             override fun onClickPatient(patient: PatientEntity, position: Int) {
                 if (isUp) {
                     slideDown(modal)
@@ -87,7 +94,7 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun listPatient() {
         initialize()
-        var list: MutableList<PatientEntity> = mutableListOf()
+
 
         mDatabaseReference = FirebaseDatabase.getInstance().reference.child("Patients")
                 .child(mAuth?.currentUser!!.uid)

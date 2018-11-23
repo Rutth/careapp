@@ -100,5 +100,17 @@ class PatientRepo private constructor(context: Context) {
         }
     }
 
+    fun removePatient(key: String) {
+
+        try {
+            mDatabaseReference = mDatabase!!.reference!!.child("Patients")
+            mDatabaseReference?.child(mAuth?.currentUser!!.uid)?.child(key)?.removeValue()
+
+
+        } catch (e: Exception) {
+            throw e
+        }
+    }
+
 
 }
