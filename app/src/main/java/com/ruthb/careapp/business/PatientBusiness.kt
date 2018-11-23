@@ -3,6 +3,7 @@ package com.ruthb.careapp.business
 import android.content.Context
 import com.ruthb.careapp.entities.ExamConsultation
 import com.ruthb.careapp.entities.PatientEntity
+import com.ruthb.careapp.entities.RemedyEntity
 import com.ruthb.careapp.entities.SicknessEntity
 import com.ruthb.careapp.repo.PatientRepo
 
@@ -38,6 +39,11 @@ class PatientBusiness(var context: Context) {
     fun removePatient(key: String){
         mUserRepository.initialize()
         mUserRepository.removePatient(key)
+    }
+
+    fun registerRemedy(remedyEntity: RemedyEntity, key: String) {
+        mUserRepository.initialize()
+        mUserRepository.registerRemedy(remedyEntity, key)
     }
 
 }

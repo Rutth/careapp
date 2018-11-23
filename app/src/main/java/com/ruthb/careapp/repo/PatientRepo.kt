@@ -9,6 +9,7 @@ import com.ruthb.careapp.entities.PatientEntity
 import com.ruthb.careapp.util.SecurityPreferences
 import com.google.firebase.database.DataSnapshot
 import com.ruthb.careapp.entities.ExamConsultation
+import com.ruthb.careapp.entities.RemedyEntity
 import com.ruthb.careapp.entities.SicknessEntity
 
 
@@ -43,6 +44,8 @@ class PatientRepo private constructor(context: Context) {
         mAuth = FirebaseAuth.getInstance()
     }
 
+    //deixar dinamico
+
     fun registerPatient(patient: PatientEntity) {
         try {
             mDatabaseReference = mDatabase!!.reference!!.child("Patients")
@@ -53,6 +56,18 @@ class PatientRepo private constructor(context: Context) {
             throw e
         }
 
+    }
+
+    fun removePatient(key: String) {
+
+        try {
+            mDatabaseReference = mDatabase!!.reference!!.child("Patients")
+            mDatabaseReference?.child(mAuth?.currentUser!!.uid)?.child(key)?.removeValue()
+
+
+        } catch (e: Exception) {
+            throw e
+        }
     }
 
     fun registerSickness(key: String, sicknessEntity: SicknessEntity) {
@@ -100,12 +115,10 @@ class PatientRepo private constructor(context: Context) {
         }
     }
 
-    fun removePatient(key: String) {
-
+    fun registerRemedy(remedyEntity: RemedyEntity, keyPatient: String) {
         try {
             mDatabaseReference = mDatabase!!.reference!!.child("Patients")
-            mDatabaseReference?.child(mAuth?.currentUser!!.uid)?.child(key)?.removeValue()
-
+            mDatabaseReference?.child(mAuth?.currentUser!!.uid)?.child(keyPatient)?.child("Remedy")?.push()?.setValue(remedyEntity)
 
         } catch (e: Exception) {
             throw e

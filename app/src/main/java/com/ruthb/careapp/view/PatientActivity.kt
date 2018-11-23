@@ -62,6 +62,11 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
                         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
                     }
 
+                    btnMed.setOnClickListener {
+                        startActivity(Intent(this@PatientActivity, RemedyActivity::class.java).putExtra(CareConstants.PATIENT.PATIENT, patient))
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                    }
+
                 }
 
                 isUp = !isUp

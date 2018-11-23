@@ -85,7 +85,7 @@ class SickActivity : AppCompatActivity(), View.OnClickListener {
 
         val btnSave = dialog.findViewById<Button>(R.id.btnSave)
         val edtName = dialog.findViewById<EditText>(R.id.edtName)
-        val edtDescription = dialog.findViewById<EditText>(R.id.edtDescription)
+        val edtDescription = dialog.findViewById<EditText>(R.id.edtDosage)
 
         btnSave.setOnClickListener {
             if (edtName.text.toString() != "") {

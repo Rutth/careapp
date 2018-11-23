@@ -61,12 +61,18 @@
             android:label="Exames e consultas"
             android:parentActivityName=".view.PatientActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".view.ProfileActivity"
             android:label="Editar perfil"
             android:parentActivityName=".view.MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.RemedyActivity"
+            android:label="Remédios"
+            android:parentActivityName=".view.PatientActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
     </application>
 
 </manifest>
