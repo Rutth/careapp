@@ -36,8 +36,7 @@ class AddPatientActivity : AppCompatActivity() {
                 val tvMessage = toast.view.findViewById<TextView>(R.id.tvMessage)
                 tvMessage.text = "Cadastrado com sucesso!"
                 toast.show()
-                startActivity(Intent(this, PatientActivity::class.java))
-                finish()
+                this.finish()
             } catch (e: Exception) {
                 val tvMessage = toast.view.findViewById<TextView>(R.id.tvMessage)
                 tvMessage.text = "Ocorreram erros. Tente novamente!"
@@ -61,6 +60,7 @@ class AddPatientActivity : AppCompatActivity() {
 
         }
     }
+
 
     private fun collectPatient(): PatientEntity {
         val name = edtName.text.toString()

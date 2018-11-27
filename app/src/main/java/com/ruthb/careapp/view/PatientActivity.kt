@@ -33,6 +33,8 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient)
 
+        println("CREATE PATIENT")
+
         mPatientBusiness = PatientBusiness(this)
 
         addPatient.setOnClickListener(this)
@@ -78,7 +80,7 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
             adapter = PatientAdapter(mutableListOf(), mListener)
             layoutManager = LinearLayoutManager(this@PatientActivity)
         }
-        listPatient()
+
     }
 
     override fun onClick(v: View) {
@@ -86,6 +88,13 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
             R.id.addPatient -> startActivity(Intent(this, AddPatientActivity::class.java))
 
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        println("RESUME PATIENT")
+        list.clear()
+        listPatient()
     }
 
     private fun initialize() {
