@@ -36,7 +36,7 @@ class PatientBusiness(var context: Context) {
         mUserRepository.removeExam(type, keyExam, keyPatient)
     }
 
-    fun removePatient(key: String){
+    fun removePatient(key: String) {
         mUserRepository.initialize()
         mUserRepository.removePatient(key)
     }
@@ -44,6 +44,11 @@ class PatientBusiness(var context: Context) {
     fun registerRemedy(remedyEntity: RemedyEntity, key: String) {
         mUserRepository.initialize()
         mUserRepository.registerRemedy(remedyEntity, key)
+    }
+
+    fun updatePatient(key: String, patient: PatientEntity) {
+        mUserRepository.initialize()
+        mUserRepository.updatePatient(key, patient)
     }
 
 }

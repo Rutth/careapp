@@ -69,6 +69,13 @@ class PatientActivity : AppCompatActivity(), View.OnClickListener {
                         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
                     }
 
+                    btnInfo.setOnClickListener {
+                        val bundle: Bundle = Bundle()
+                        bundle.putSerializable(CareConstants.PATIENT.PATIENT, patient)
+                        startActivity(Intent(this@PatientActivity, AddPatientActivity::class.java).putExtras(bundle))
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                    }
+
                 }
 
                 isUp = !isUp

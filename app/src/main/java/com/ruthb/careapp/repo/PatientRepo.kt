@@ -125,5 +125,16 @@ class PatientRepo private constructor(context: Context) {
         }
     }
 
+    fun updatePatient(key: String, patient: PatientEntity) {
+        println("KEY RECEBIDA: ${patient.key}")
+        try {
+            mDatabaseReference = mDatabase!!.reference!!.child("Patients")
+            mDatabaseReference?.child(mAuth?.currentUser!!.uid)?.child(key)?.setValue(patient)
+
+        } catch (e: Exception) {
+            throw e
+        }
+    }
+
 
 }
