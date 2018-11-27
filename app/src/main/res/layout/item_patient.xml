@@ -2,6 +2,7 @@
 <com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="60dp"
+    android:layout_margin="5dp"
     app:mode="same_level"
     app:dragEdge="right"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -43,11 +44,13 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/helvetica_neue_thin"
             android:text="Nome"
             android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/age"
             app:layout_constraintStart_toEndOf="@+id/img"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,13 +58,13 @@
             android:id="@+id/age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
             android:fontFamily="@font/helvetica_neue_thin"
             android:text="idade"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/img"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img" />
 
     </android.support.constraint.ConstraintLayout>
 
